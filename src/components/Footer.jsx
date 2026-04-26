@@ -97,27 +97,8 @@ export default function Footer() {
               and wholesalers with verified global buyers.
             </p>
 
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <a
-                href="tel:+919654660006"
-                className="flex items-start gap-2 text-gray-400 text-sm hover:text-white transition group"
-              >
-                <PhoneIcon className="w-4 h-4 mt-0.5 text-blue-400 group-hover:text-blue-300 shrink-0" />
-                <span>+91 9654660006 , +91 9540175352</span>
-              </a>
-              <div className="flex items-start gap-2 text-gray-400 text-sm">
-                <MapPinIcon className="w-4 h-4 mt-0.5 text-blue-400 shrink-0" />
-                <span>Noida Sector 63, Uttar Pradesh, 201301, India</span>
-              </div>
-              <a
-                href="mailto:viatrademart@gmail.com"
-                className="flex items-start gap-2 text-gray-400 text-sm hover:text-white transition group"
-              >
-                <EnvelopeIcon className="w-4 h-4 mt-0.5 text-blue-400 group-hover:text-blue-300 shrink-0" />
-                <span>viatrademart@gmail.com</span>
-              </a>
-            </div>
+            
+
           </div>
 
           {/* ── INFO + SUPPORT COLUMNS ── */}
@@ -215,7 +196,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-300 transition"
             >
-              Tanveer Dev Code
+              Anirudh Dev Coder
             </a>
           </p>
         </div>
