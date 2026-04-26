@@ -157,7 +157,7 @@ export default function Home() {
               India's Trusted B2B Portal
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-              Via Trade Mart –{" "}
+              Go Easy Trade –{" "}
               <span className="text-yellow-300">Best B2B Portal</span> in India
               for Export and Import Growth
             </h1>
@@ -223,7 +223,7 @@ export default function Home() {
               Your Trusted Partner in International Trade
             </h2>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Welcome to Via Trade Mart — India's leading B2B portal connecting
+              Welcome to Go Easy Trade — India's leading B2B portal connecting
               exporters, manufacturers, suppliers, and wholesalers with verified
               global buyers. Our advanced digital platform streamlines the
               import-export process with tools that promote transparency, trust,
@@ -231,9 +231,9 @@ export default function Home() {
             </p>
             <p className="mt-3 text-gray-600 leading-relaxed">
               Whether you're an established exporter or a local supplier
-              entering global markets, Via Trade Mart offers a seamless
-              ecosystem to showcase your products, generate quality leads, and
-              build sustainable trade partnerships.
+              entering global markets, Go Easy Trade offers a seamless ecosystem
+              to showcase your products, generate quality leads, and build
+              sustainable trade partnerships.
             </p>
             <Link
               to="/find-buyers"
@@ -396,7 +396,7 @@ export default function Home() {
           </h2>
           <p className="mt-3 text-gray-500 text-sm max-w-xl mx-auto">
             Join thousands of exporters, manufacturers, and wholesalers already
-            trading on Via Trade Mart — India's most trusted B2B portal.
+            trading on Go Easy Trade — India's most trusted B2B portal.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link

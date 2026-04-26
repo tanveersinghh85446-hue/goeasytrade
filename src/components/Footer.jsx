@@ -28,7 +28,7 @@ const ourPages = [
   { label: "Get Own Website", path: "/get-your-own-website" },
   { label: "Blogs", path: "/blogs" },
   { label: "Web Stories", path: "/web-stories" },
-  { label: "Via Trade Mart in News", path: "/news" },
+  { label: "Go Easy Trade in News", path: "/news" },
   { label: "Make a Payment", path: "/make-payment-with-viatrademart" },
   { label: "Advertise with Us", path: "/advertise-with-via-trade-mart" },
   { label: "Guest Post", path: "/guest-posting" },
@@ -83,12 +83,12 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img
                 src="/assets/images/logo.png"
-                alt="Via Trade Mart"
+                alt="Go Easy Trade"
                 className="h-10 w-auto object-contain brightness-0 invert"
                 onError={(e) => (e.target.style.display = "none")}
               />
               <span className="text-lg font-extrabold text-white tracking-tight">
-                Via Trade Mart
+                Go Easy Trade
               </span>
             </Link>
 
@@ -96,9 +96,6 @@ export default function Footer() {
               India's trusted B2B portal connecting exporters, manufacturers,
               and wholesalers with verified global buyers.
             </p>
-
-            
-
           </div>
 
           {/* ── INFO + SUPPORT COLUMNS ── */}
@@ -159,8 +156,6 @@ export default function Footer() {
                 Chatting Software
               </Link>
             </div>
-
-            
           </div>
         </div>
 
@@ -186,7 +181,7 @@ export default function Footer() {
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-gray-500 text-xs text-center sm:text-left">
-            Via Trade Mart © 2026 • All Rights Reserved
+            Go Easy Trade © 2026 • All Rights Reserved
           </p>
           <p className="text-gray-600 text-xs">
             Developed by{" "}

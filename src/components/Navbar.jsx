@@ -36,18 +36,17 @@ export default function Navbar() {
       ─────────────────────────────────────── */}
       <div className="w-full bg-blue-700 text-white text-sm hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9">
-
           {/* Left: Logo + Deal Room */}
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2">
               <img
                 src="/assets/images/logo.png"
-                alt="Via Trade Mart"
+                alt="Go Easy Trade"
                 className="h-6 w-auto object-contain brightness-0 invert"
                 onError={(e) => (e.target.style.display = "none")}
               />
               <span className="font-bold tracking-wide text-white text-sm">
-                Via Trade Mart
+                Go Easy Trade
               </span>
             </Link>
             <Link
@@ -78,17 +77,16 @@ export default function Navbar() {
       <header className="w-full sticky top-0 z-50 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
               <img
                 src="/assets/images/logo.png"
-                alt="Via Trade Mart Logo"
+                alt="Go Easy Trade Logo"
                 className="h-10 w-auto object-contain"
                 onError={(e) => (e.target.style.display = "none")}
               />
               <span className="text-xl font-bold text-blue-700 tracking-tight">
-                Via Trade Mart
+                Go Easy Trade
               </span>
             </Link>
 
