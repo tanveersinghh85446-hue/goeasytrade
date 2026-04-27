@@ -154,11 +154,11 @@ export default function Home() {
           {/* Text */}
           <div className="flex-1 text-center md:text-left">
             <span className="inline-block bg-white/20 text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
-              India's Trusted B2B Portal
+              India's Trusted B2B Platform
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
               Go Easy Trade –{" "}
-              <span className="text-yellow-300">Best B2B Portal</span> in India
+              <span className="text-yellow-300">Best B2B Platform</span> in India
               for Export and Import Growth
             </h1>
             <p className="mt-5 text-blue-100 text-base sm:text-lg max-w-xl">
@@ -223,7 +223,7 @@ export default function Home() {
               Your Trusted Partner in International Trade
             </h2>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Welcome to Go Easy Trade — India's leading B2B portal connecting
+              Welcome to Go Easy Trade — India's leading B2B Platform connecting
               exporters, manufacturers, suppliers, and wholesalers with verified
               global buyers. Our advanced digital platform streamlines the
               import-export process with tools that promote transparency, trust,
@@ -396,7 +396,7 @@ export default function Home() {
           </h2>
           <p className="mt-3 text-gray-500 text-sm max-w-xl mx-auto">
             Join thousands of exporters, manufacturers, and wholesalers already
-            trading on Go Easy Trade — India's most trusted B2B portal.
+            trading on Go Easy Trade — India's most trusted B2B Platform.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link

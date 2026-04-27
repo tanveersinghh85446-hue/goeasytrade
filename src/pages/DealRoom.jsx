@@ -1,230 +1,365 @@
-import React from 'react'
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {
+  ArrowRightIcon,
+  BoltIcon,
+  ShieldCheckIcon,
+  ChatBubbleLeftRightIcon,
+  DocumentTextIcon,
+  MagnifyingGlassIcon,
+  TagIcon,
+  MapPinIcon,
+  CurrencyRupeeIcon,
+  ClockIcon,
+  FireIcon,
+} from "@heroicons/react/24/outline";
 
-const messages = [
-  "Writing clean code... ✨",
-  "Designing beautiful layouts... 🎨",
-  "Testing on all devices... 📱",
-  "Almost there... 🚀",
-  "Adding final touches... 🛠️",
+// ─── DATA ─────────────────────────────────────────────
+const dealFeatures = [
+  {
+    icon: DocumentTextIcon,
+    title: "Post Requirements",
+    desc: "Post your buy/sell requirements and let verified traders contact you directly.",
+  },
+  {
+    icon: BoltIcon,
+    title: "Trade Leads",
+    desc: "Get instant trade leads filtered by category, location, and price range.",
+  },
+  {
+    icon: ChatBubbleLeftRightIcon,
+    title: "Direct Negotiation",
+    desc: "Negotiate prices and terms directly with buyers and sellers in real time.",
+  },
+  {
+    icon: ShieldCheckIcon,
+    title: "Verified Traders",
+    desc: "Every trader on the platform is GST-verified for safe and trusted dealings.",
+  },
 ];
 
-function DealRoom() {
-  const [msgIndex, setMsgIndex] = useState(0);
-  const [dots, setDots] = useState("");
-  const [timeLeft, setTimeLeft] = useState("");
+const tabs = ["All Deals", "Buy Leads", "Sell Leads", "Urgent"];
 
-  // Cycle through messages
-  useEffect(() => {
-    const t = setInterval(() => {
-      setMsgIndex((prev) => (prev + 1) % messages.length);
-    }, 2000);
-    return () => clearInterval(t);
-  }, []);
+const deals = [
+  {
+    id: 1,
+    type: "Buy",
+    urgent: true,
+    title: "Bulk Cotton Fabric Required",
+    category: "Textiles & Apparel",
+    location: "Mumbai, Maharashtra",
+    quantity: "500 kg",
+    price: "₹120–₹150 / kg",
+    posted: "2 hours ago",
+    desc: "Looking for premium quality cotton fabric suppliers. Need consistent supply every month. GST billing required.",
+    company: "Raj Textiles Pvt Ltd",
+    verified: true,
+  },
+  {
+    id: 2,
+    type: "Sell",
+    urgent: false,
+    title: "Basmati Rice — Export Quality",
+    category: "Agricultural Products",
+    location: "Ludhiana, Punjab",
+    quantity: "10 Tonnes",
+    price: "₹55 / kg",
+    posted: "5 hours ago",
+    desc: "Premium grade Basmati rice available for bulk purchase. Export-quality packaging available.",
+    company: "Krishi Agro Industries",
+    verified: true,
+  },
+  {
+    id: 3,
+    type: "Buy",
+    urgent: false,
+    title: "LED TV Panels — 32 & 43 inch",
+    category: "Electronics",
+    location: "Delhi, NCR",
+    quantity: "200 units",
+    price: "₹3,500–₹5,000 / unit",
+    posted: "1 day ago",
+    desc: "Requirement for LED TV panels for assembly. Quality certification must. Looking for long-term supplier.",
+    company: "Global Electronics Hub",
+    verified: true,
+  },
+  {
+    id: 4,
+    type: "Sell",
+    urgent: true,
+    title: "Industrial CNC Machine — Used",
+    category: "Industrial Goods",
+    location: "Ahmedabad, Gujarat",
+    quantity: "3 units",
+    price: "₹2.5 Lakh / unit",
+    posted: "3 hours ago",
+    desc: "Used CNC machines in excellent working condition. Full service history available. Open to inspection.",
+    company: "IndusTech Machinery",
+    verified: false,
+  },
+  {
+    id: 5,
+    type: "Buy",
+    urgent: false,
+    title: "FMCG Products for Pan-India Distribution",
+    category: "Consumer Goods",
+    location: "Bengaluru, Karnataka",
+    quantity: "Bulk",
+    price: "Negotiable",
+    posted: "2 days ago",
+    desc: "Distributor looking for FMCG brands for pan-India distribution. Minimum brand age 2 years.",
+    company: "HomePlus Retail",
+    verified: true,
+  },
+  {
+    id: 6,
+    type: "Sell",
+    urgent: false,
+    title: "Handloom Products — Jaipur Export",
+    category: "Handicrafts",
+    location: "Jaipur, Rajasthan",
+    quantity: "500+ pieces",
+    price: "₹250–₹2,000 / piece",
+    posted: "1 day ago",
+    desc: "Export quality handloom products, block print fabrics, and pottery. Custom orders accepted.",
+    company: "Craftsmen Handicrafts",
+    verified: true,
+  },
+];
 
-  // Animated dots
-  useEffect(() => {
-    const t = setInterval(() => {
-      setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
-    }, 400);
-    return () => clearInterval(t);
-  }, []);
-
-  // 24 Hour Timer
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      // Get current time
-      const now = new Date();
-      
-      // Get midnight (start of today)
-      const midnight = new Date();
-      midnight.setHours(0, 0, 0, 0);
-      
-      // Calculate next midnight (24 hours from midnight)
-      const nextMidnight = new Date(midnight);
-      nextMidnight.setDate(nextMidnight.getDate() + 1);
-      
-      // Time left in ms
-      const diff = nextMidnight - now;
-      
-      if (diff <= 0) {
-        return "00:00:00";
-      }
-      
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-    };
-
-    setTimeLeft(calculateTimeLeft());
-    
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, []);
-
+// ─── DEAL CARD ─────────────────────────────────────────
+function DealCard({ deal }) {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 text-center pt-15 border-t border-white/2">
-
-      {/* ── Developer SVG Illustration ── */}
-      <div className="mb-8 sm:mb-10">
-        <svg
-          width="260"
-          height="260"
-          viewBox="0 0 260 260"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="mx-auto"
-        >
-          {/* Desk */}
-          <rect x="30" y="190" width="200" height="12" rx="6" fill="#111"/>
-          <rect x="55" y="202" width="12" height="40" rx="4" fill="#333"/>
-          <rect x="193" y="202" width="12" height="40" rx="4" fill="#333"/>
-
-          {/* Monitor */}
-          <rect x="70" y="120" width="120" height="75" rx="8" fill="#111"/>
-          <rect x="78" y="128" width="104" height="58" rx="4" fill="#1a1a2e"/>
-          {/* Screen glow */}
-          <rect x="82" y="132" width="96" height="50" rx="3" fill="#0f0f23"/>
-
-          {/* Code lines on screen */}
-          <rect x="88" y="140" width="55" height="3" rx="1.5" fill="#4ade80"/>
-          <rect x="88" y="148" width="40" height="3" rx="1.5" fill="#60a5fa"/>
-          <rect x="95" y="156" width="65" height="3" rx="1.5" fill="#f9a8d4"/>
-          <rect x="95" y="164" width="45" height="3" rx="1.5" fill="#fbbf24"/>
-          <rect x="88" y="172" width="30" height="3" rx="1.5" fill="#4ade80"/>
-
-          {/* Blinking cursor */}
-          <rect x="120" y="172" width="2" height="10" rx="1" fill="white">
-            <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-          </rect>
-
-          {/* Monitor stand */}
-          <rect x="122" y="195" width="16" height="10" rx="2" fill="#333"/>
-          <rect x="110" y="203" width="40" height="6" rx="3" fill="#222"/>
-
-          {/* Keyboard */}
-          <rect x="80" y="210" width="100" height="18" rx="5" fill="#222"/>
-          {[0,1,2,3,4,5,6,7,8,9].map((i) => (
-            <rect key={i} x={86 + i * 9} y="214" width="6" height="5" rx="1.5" fill="#444"/>
-          ))}
-          {[0,1,2,3,4,5,6,7,8].map((i) => (
-            <rect key={i} x={90 + i * 9} y="221" width="6" height="4" rx="1.5" fill="#444"/>
-          ))}
-
-          {/* Person body */}
-          <rect x="108" y="82" width="44" height="42" rx="14" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Person neck */}
-          <rect x="125" y="76" width="10" height="10" rx="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Person head */}
-          <circle cx="130" cy="58" r="22" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Hair */}
-          <path d="M108 52 Q110 32 130 30 Q150 32 152 52" fill="#111"/>
-
-          {/* Eyes */}
-          <ellipse cx="122" cy="56" rx="4" ry="4.5" fill="#111"/>
-          <ellipse cx="138" cy="56" rx="4" ry="4.5" fill="#111"/>
-          <circle cx="123" cy="54" r="1.5" fill="white"/>
-          <circle cx="139" cy="54" r="1.5" fill="white"/>
-
-          {/* Glasses */}
-          <rect x="116" y="51" width="12" height="10" rx="4" fill="none" stroke="#111" strokeWidth="1.5"/>
-          <rect x="132" y="51" width="12" height="10" rx="4" fill="none" stroke="#111" strokeWidth="1.5"/>
-          <line x1="128" y1="56" x2="132" y2="56" stroke="#111" strokeWidth="1.5"/>
-          <line x1="108" y1="56" x2="116" y2="56" stroke="#111" strokeWidth="1.5"/>
-          <line x1="144" y1="56" x2="152" y2="56" stroke="#111" strokeWidth="1.5"/>
-
-          {/* Smile */}
-          <path d="M122 67 Q130 74 138 67" stroke="#111" strokeWidth="2" strokeLinecap="round" fill="none"/>
-
-          {/* Left arm — typing */}
-          <line x1="108" y1="96" x2="88" y2="118" stroke="#111" strokeWidth="4" strokeLinecap="round">
-            <animateTransform attributeName="transform" type="rotate" values="0 108 96;-5 108 96;0 108 96" dur="0.5s" repeatCount="indefinite"/>
-          </line>
-          <ellipse cx="85" cy="121" rx="7" ry="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Right arm — typing */}
-          <line x1="152" y1="96" x2="172" y2="118" stroke="#111" strokeWidth="4" strokeLinecap="round">
-            <animateTransform attributeName="transform" type="rotate" values="0 152 96;5 152 96;0 152 96" dur="0.5s" repeatCount="indefinite" begin="0.25s"/>
-          </line>
-          <ellipse cx="175" cy="121" rx="7" ry="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Coffee mug */}
-          <rect x="32" y="178" width="24" height="18" rx="4" fill="white" stroke="#111" strokeWidth="2"/>
-          <path d="M56 183 Q64 183 64 189 Q64 195 56 195" stroke="#111" strokeWidth="2" fill="none"/>
-          {/* Steam */}
-          <path d="M38 175 Q40 170 38 165" stroke="#aaa" strokeWidth="1.5" strokeLinecap="round" fill="none">
-            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
-          </path>
-          <path d="M46 174 Q48 168 46 162" stroke="#aaa" strokeWidth="1.5" strokeLinecap="round" fill="none">
-            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
-          </path>
-
-          {/* Stars / sparkles around head */}
-          <text x="158" y="46" fontSize="14" fill="#111">✦</text>
-          <text x="96"  y="42" fontSize="12" fill="#111">✦</text>
-          <text x="170" y="72" fontSize="10" fill="#111">✦</text>
-        </svg>
-      </div>
-
-      {/* ── Text ── */}
-      <p className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-3">DealRoom Page Under Construction</p>
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-black mb-4">Our DealRoom Page Coming Soon</h1>
-
-      {/* Polite message */}
-      <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-md mx-auto mb-3">
-        We are working hard to bring you something wonderful. This page is currently under development and will be ready very soon.
-      </p>
-      <p className="text-gray-400 text-sm max-w-sm mx-auto mb-8">
-        Thank you for your patience and support. We appreciate you visiting Swarna Kamal Yoga! 🙏
-      </p>
-
-      {/* 24 Hour Timer */}
-      <div className="mb-8  px-8 py-6 max-w-sm">
-        {/* <p className="text-xs uppercase tracking-widest text-black font-bold mb-3">Time until reset</p> */}
-        <div className="font-mono text-5xl font-extrabold text-black tracking-tight">
-          {timeLeft || "00:00:00"}
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 p-5">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <div className="flex flex-wrap gap-1.5">
+          <span
+            className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${
+              deal.type === "Buy"
+                ? "bg-blue-100 text-blue-700"
+                : "bg-orange-100 text-orange-700"
+            }`}
+          >
+            {deal.type === "Buy" ? "🛒 Buy Lead" : "📦 Sell Lead"}
+          </span>
+          {deal.urgent && (
+            <span className="flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full bg-red-100 text-red-600">
+              <FireIcon className="w-3 h-3" /> Urgent
+            </span>
+          )}
+          {deal.verified && (
+            <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-green-100 text-green-700">
+              ✓ Verified
+            </span>
+          )}
         </div>
-        {/* <p className="text-xs text-black mt-3">Resets daily at midnight</p> */}
+        <span className="flex items-center gap-1 text-[10px] text-gray-400 shrink-0">
+          <ClockIcon className="w-3 h-3" /> {deal.posted}
+        </span>
       </div>
 
-      {/* Animated status */}
-      <div className="flex items-center gap-3 mb-8 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
-        <span className="w-2 h-2 bg-black rounded-full animate-pulse shrink-0" />
-        <p className="text-sm font-medium text-gray-700 min-w-55 text-left">
-          {messages[msgIndex]}
-        </p>
+      {/* Title */}
+      <h3 className="font-bold text-gray-800 text-sm mb-1">{deal.title}</h3>
+      <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-2">
+        {deal.desc}
+      </p>
+
+      {/* Meta */}
+      <div className="grid grid-cols-2 gap-1.5 mb-3">
+        <div className="flex items-center gap-1.5 text-xs text-gray-500">
+          <TagIcon className="w-3.5 h-3.5 shrink-0 text-blue-400" />
+          <span className="truncate">{deal.category}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-xs text-gray-500">
+          <MapPinIcon className="w-3.5 h-3.5 shrink-0 text-blue-400" />
+          <span className="truncate">{deal.location}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-xs text-gray-500">
+          <DocumentTextIcon className="w-3.5 h-3.5 shrink-0 text-blue-400" />
+          <span>Qty: {deal.quantity}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-xs text-gray-500">
+          <CurrencyRupeeIcon className="w-3.5 h-3.5 shrink-0 text-blue-400" />
+          <span className="truncate">{deal.price}</span>
+        </div>
       </div>
 
-      {/* Bouncing dots */}
-      <div className="flex gap-2 mb-10">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="w-2.5 h-2.5 bg-black rounded-full animate-bounce"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          />
-        ))}
+      {/* Footer */}
+      <div className="border-t border-gray-100 pt-3 flex items-center justify-between">
+        <span className="text-xs text-gray-400">{deal.company}</span>
+        <button className="text-xs font-semibold text-blue-700 hover:underline flex items-center gap-1">
+          View Deal <ArrowRightIcon className="w-3 h-3" />
+        </button>
       </div>
-
-      {/* Back to Home button */}
-      <Link
-        to="/"
-        className="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-all text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200"
-      >
-        ← Back to Home
-      </Link>
-
     </div>
   );
 }
 
-export default DealRoom;
+// ─── MAIN PAGE ─────────────────────────────────────────
+export default function DealRoom() {
+  const [activeTab, setActiveTab] = useState("All Deals");
+  const [search, setSearch] = useState("");
+
+  const filtered = deals.filter((deal) => {
+    const matchTab =
+      activeTab === "All Deals" ||
+      (activeTab === "Buy Leads" && deal.type === "Buy") ||
+      (activeTab === "Sell Leads" && deal.type === "Sell") ||
+      (activeTab === "Urgent" && deal.urgent);
+
+    const matchSearch =
+      search === "" ||
+      deal.title.toLowerCase().includes(search.toLowerCase()) ||
+      deal.category.toLowerCase().includes(search.toLowerCase()) ||
+      deal.location.toLowerCase().includes(search.toLowerCase());
+
+    return matchTab && matchSearch;
+  });
+
+  return (
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+
+      {/* ── HERO ── */}
+      <section className="bg-linear-to-br from-blue-700 via-blue-600 to-blue-500 text-white py-14 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="inline-block bg-white/20 border border-white/25 text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">
+            Via Trade Mart
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold mb-3">
+            Deal Room
+          </h1>
+          <p className="text-blue-100 text-sm max-w-xl mx-auto leading-relaxed mb-7">
+            India's most active B2B deal space. Browse live buy & sell leads,
+            post your requirements, and connect with verified traders instantly.
+          </p>
+
+          {/* Search */}
+          <div className="relative max-w-xl mx-auto">
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search deals by product, category or location..."
+              className="w-full pl-11 pr-4 py-3.5 rounded-full text-gray-800 text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURES ROW ── */}
+      <section className="bg-white border-b border-gray-100 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {dealFeatures.map((f) => (
+              <div key={f.title} className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+                  <f.icon className="w-5 h-5 text-blue-700" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-800">{f.title}</p>
+                  <p className="text-xs text-gray-500 leading-relaxed mt-0.5">
+                    {f.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TABS ── */}
+      <div className="bg-white border-b border-gray-100 sticky top-16 z-40 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`shrink-0 px-5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                  activeTab === tab
+                    ? "bg-blue-700 text-white shadow"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+              >
+                {tab === "Urgent" ? "🔥 " : ""}
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── DEALS GRID ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Count row */}
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-sm text-gray-500">
+            Showing{" "}
+            <span className="font-bold text-gray-800">{filtered.length}</span>{" "}
+            deals
+          </p>
+          {search && (
+            <button
+              onClick={() => setSearch("")}
+              className="text-xs text-red-500 hover:underline"
+            >
+              Clear Search
+            </button>
+          )}
+        </div>
+
+        {filtered.length > 0 ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtered.map((deal) => (
+              <DealCard key={deal.id} deal={deal} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <MagnifyingGlassIcon className="w-16 h-16 text-gray-200 mx-auto mb-4" />
+            <h3 className="text-lg font-bold text-gray-400">No deals found</h3>
+            <p className="text-sm text-gray-400 mt-1">
+              Try a different keyword or clear filters.
+            </p>
+            <button
+              onClick={() => { setSearch(""); setActiveTab("All Deals"); }}
+              className="mt-4 text-blue-700 text-sm font-semibold hover:underline"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* ── POST REQUIREMENT CTA ── */}
+      <section className="bg-blue-700 text-white py-14 px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <BoltIcon className="w-10 h-10 mx-auto mb-4 text-yellow-300" />
+          <h2 className="text-2xl font-extrabold mb-2">
+            Have a Trade Requirement?
+          </h2>
+          <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed">
+            Post your buy or sell requirement and get responses from verified
+            traders across India and globally within hours.
+          </p>
+          <div className="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/post-your-requirment"
+              className="bg-yellow-400 text-blue-900 font-bold px-7 py-3 rounded-full hover:bg-yellow-300 transition shadow-lg text-sm"
+            >
+              Post Your Requirement
+            </Link>
+            <Link
+              to="/find-buyers"
+              className="bg-white/10 border border-white/30 text-white font-semibold px-7 py-3 rounded-full hover:bg-white/20 transition text-sm"
+            >
+              Find Buyers & Sellers
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

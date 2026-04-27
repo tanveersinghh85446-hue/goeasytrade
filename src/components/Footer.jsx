@@ -93,7 +93,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
-              India's trusted B2B portal connecting exporters, manufacturers,
+              India's trusted B2B Platform connecting exporters, manufacturers,
               and wholesalers with verified global buyers.
             </p>
           </div>
