@@ -15,7 +15,7 @@ const customerSupport = [
   { label: "User Guide", path: "/user-guide" },
   { label: "Jobs & Careers", path: "/jobs-and-careers" },
   { label: "Team", path: "/team" },
-  { label: "FAQs", to: "/FAQs" },
+  { label: "FAQs", path: "/faqs" },
   { label: "Gallery", path: "/gallery" },
   { label: "Catalogs", path: "/catalogue" },
   { label: "Post Your Requirement", path: "/post-your-requirment" },
@@ -156,23 +156,6 @@ export default function Footer() {
                 Chatting Software
               </Link>
             </div>
-          </div>
-        </div>
-
-        {/* ── POPULAR TAGS ── */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4">
-            Popular Tags
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {popularTags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-gray-800 border border-gray-700 text-gray-400 text-xs px-3 py-1.5 rounded-full hover:bg-blue-700 hover:border-blue-700 hover:text-white transition-all cursor-pointer"
-              >
-                {tag}
-              </span>
-            ))}
           </div>
         </div>
       </div>

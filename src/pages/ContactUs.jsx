@@ -176,8 +176,8 @@ function ContactUs() {
       </div>
 
       {/* ── Text ── */}
-      <p className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-3">DealRoom Page Under Construction</p>
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-black mb-4">Our DealRoom Page Coming Soon</h1>
+      <p className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-3">Cantact Us  Page Under Construction</p>
+      <h1 className="text-4xl sm:text-5xl font-extrabold text-black mb-4">Our Contact Us Page Coming Soon</h1>
 
       {/* Polite message */}
       <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-md mx-auto mb-3">

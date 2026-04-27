@@ -332,7 +332,7 @@ export default function Home() {
               <div key={s.step} className="relative">
                 {/* Connector line */}
                 {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-white/20 z-0" />
+                  <div/>
                 )}
                 <div className="relative z-10 bg-white/10 border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition">
                   <span className="text-3xl font-extrabold text-yellow-300">
