@@ -136,7 +136,7 @@ export default function PrivacyPolicy() {
             Privacy Policy
           </h1>
           <p className="text-blue-100 text-sm">
-            Via Trade Mart — Last Updated: January 2026
+            Go Easy Trade — Last Updated: January 2026
           </p>
         </div>
       </section>
@@ -146,17 +146,17 @@ export default function PrivacyPolicy() {
         {/* Intro */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
           <p className="text-sm text-gray-600 leading-relaxed">
-            At Via Trade Mart ("Company", "we", "our", or "us"), we are
+            At Go Easy Trade ("Company", "we", "our", or "us"), we are
             committed to protecting your privacy. This Privacy Policy explains
             how we collect, use, disclose, and safeguard your information when
             you visit our website{" "}
             <a
-              href="https://viatrademart.com"
+              href="https://goeasytrade.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-700 hover:underline font-medium"
             >
-              https://viatrademart.com
+              https://goeasytrade.com
             </a>
             , use our services, or interact with us in any way.
           </p>
@@ -210,19 +210,19 @@ export default function PrivacyPolicy() {
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <span className="text-blue-700">📧</span>
                       <a
-                        href="mailto:info@viatrademart.com"
+                        href="mailto:info@goeasytrade.com"
                         className="text-blue-700 hover:underline"
                       >
-                        info@viatrademart.com
+                        info@goeasytrade.com
                       </a>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <span className="text-blue-700">📧</span>
                       <a
-                        href="mailto:viatrademart@gmail.com"
+                        href="mailto:goeasytrade@gmail.com"
                         className="text-blue-700 hover:underline"
                       >
-                        viatrademart@gmail.com
+                        goeasytrade@gmail.com
                       </a>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -289,7 +289,7 @@ export default function PrivacyPolicy() {
         {/* Bottom note */}
         <div className="mt-8 bg-blue-50 border border-blue-100 rounded-2xl p-5 text-center">
           <p className="text-xs text-gray-500">
-            This Privacy Policy is effective as of January 2026. Via Trade Mart
+            This Privacy Policy is effective as of January 2026. Go Easy Trade
             Private Limited reserves the right to update this policy at any
             time.
           </p>

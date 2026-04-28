@@ -32,7 +32,7 @@ const values = [
   {
     icon: UserGroupIcon,
     title: "MSME Empowerment",
-    desc: "Small and medium enterprises are the backbone of India's economy. Via Trade Mart helps these businesses expand their reach by providing visibility on a global platform — affordably.",
+    desc: "Small and medium enterprises are the backbone of India's economy. Go Easy Trade helps these businesses expand their reach by providing visibility on a global platform — affordably.",
   },
   {
     icon: BoltIcon,
@@ -52,7 +52,7 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2020", event: "Via Trade Mart founded in Noida, UP with a vision to simplify Indian export trade." },
+  { year: "2020", event: "Go Easy Trade founded in Noida, UP with a vision to simplify Indian export trade." },
   { year: "2021", event: "Platform launched with 500+ verified suppliers and 10 product categories." },
   { year: "2022", event: "Expanded to 30+ countries. Reached 1 lakh registered users milestone." },
   { year: "2023", event: "Introduced Deal Room — India's first structured B2B deal negotiation space." },
@@ -64,7 +64,7 @@ const team = [
   { name: "Founder & CEO", desc: "Visionary leader driving India's digital trade revolution." },
   { name: "Head of Operations", desc: "Ensuring smooth platform operations and supplier onboarding." },
   { name: "Head of Technology", desc: "Building next-gen B2B infrastructure for global trade." },
-  { name: "Head of Marketing", desc: "Growing Via Trade Mart's global brand presence." },
+  { name: "Head of Marketing", desc: "Growing Go Easy Trade's global brand presence." },
 ];
 
 // ─── MAIN PAGE ──────────────────────────────────────────
@@ -82,7 +82,7 @@ export default function AboutUs() {
             India's Trusted Partner in International Trade
           </h1>
           <p className="text-blue-100 text-sm max-w-2xl mx-auto leading-relaxed">
-            Via Trade Mart is an Indian company dedicated to helping businesses
+            Go Easy Trade is an Indian company dedicated to helping businesses
             grow through professional export and import services. We connect
             Indian products with global buyers and assist international
             companies in finding reliable suppliers from India.
@@ -126,10 +126,10 @@ export default function AboutUs() {
               Who We Are
             </span>
             <h2 className="mt-2 text-3xl font-extrabold text-gray-900">
-              Via Trade Mart Private Limited
+              Go Easy Trade Private Limited
             </h2>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Welcome to Via Trade Mart — your trusted partner in international
+              Welcome to Go Easy Trade — your trusted partner in international
               trade. As the best B2B portal in India, we empower exporters,
               manufacturers, suppliers, and wholesalers by connecting them with
               verified global buyers.
@@ -156,7 +156,7 @@ export default function AboutUs() {
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <span className="text-blue-700 font-semibold">✉️</span>
-                viatrademart@gmail.com
+                goeasytrade@gmail.com
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <span className="text-blue-700 font-semibold">📍</span>
@@ -327,7 +327,7 @@ export default function AboutUs() {
             Ready to Grow Your Business Globally?
           </h2>
           <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed">
-            Join 1.2 million+ businesses already trading on Via Trade Mart —
+            Join 1.2 million+ businesses already trading on Go Easy Trade —
             India's most trusted B2B portal for exporters and importers.
           </p>
           <div className="mt-7 flex flex-col sm:flex-row gap-3 justify-center">

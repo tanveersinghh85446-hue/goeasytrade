@@ -224,7 +224,7 @@ export default function DealRoom() {
       <section className="bg-linear-to-br from-blue-700 via-blue-600 to-blue-500 text-white py-14 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-white/20 border border-white/25 text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">
-            Via Trade Mart
+            Go Easy Trade
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold mb-3">
             Deal Room

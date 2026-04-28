@@ -184,7 +184,7 @@ function GoEasyTradeinNews() {
         We are working hard to bring you something wonderful. This page is currently under development and will be ready very soon.
       </p>
       <p className="text-gray-400 text-sm max-w-sm mx-auto mb-8">
-        Thank you for your patience and support. We appreciate you visiting Swarna Kamal Yoga! 🙏
+        Thank you for your patience and support. We appreciate you visiting Go Easy Trade
       </p>
 
       {/* 24 Hour Timer */}

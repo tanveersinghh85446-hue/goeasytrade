@@ -87,7 +87,7 @@ const adFormats = [
   {
     icon: GlobeAltIcon,
     title: "Homepage Banner Ads",
-    desc: "Premium banner placements on Via Trade Mart's homepage — seen by 1.2M+ registered users daily.",
+    desc: "Premium banner placements on Go Easy Trade's homepage — seen by 1.2M+ registered users daily.",
     reach: "1.2M+ daily users",
   },
   {
@@ -140,7 +140,7 @@ export default function AdvertiseWithUs() {
             Grow Your Business
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold mb-3">
-            Advertise with Via Trade Mart
+            Advertise with Go Easy Trade
           </h1>
           <p className="text-blue-100 text-sm max-w-xl mx-auto leading-relaxed mb-7">
             Flexible pricing designed for exporters and manufacturers. Reach
@@ -160,7 +160,7 @@ export default function AdvertiseWithUs() {
       <section className="bg-white py-10 px-4 border-b border-gray-100">
         <div className="max-w-4xl mx-auto sm:px-6">
           <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">
-            Why Advertise on Via Trade Mart?
+            Why Advertise on Go Easy Trade?
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {whyAdvertise.map((stat) => (

@@ -20,7 +20,7 @@ const stories = [
     timeframe: "Within 3 months",
     buyers: ["Dubai", "Kenya", "Singapore"],
     challenge: "A Mumbai-based FMCG exporter was struggling to find verified international buyers beyond their existing network. Traditional methods like trade fairs were expensive and time-consuming.",
-    solution: "Listed products on Via Trade Mart with complete profile, certifications, and high-quality images. Upgraded to Premium plan for featured listing and dedicated account manager support.",
+    solution: "Listed products on Go Easy Trade with complete profile, certifications, and high-quality images. Upgraded to Premium plan for featured listing and dedicated account manager support.",
     outcome: "Connected with verified buyers from Dubai, Kenya, and Singapore. Secured recurring export orders worth ₹75 lakhs — all through the platform within just 3 months of joining.",
     metrics: [
       { label: "Export Orders", value: "₹75L+" },
@@ -77,7 +77,7 @@ const stories = [
     timeframe: "Within 4 months",
     buyers: ["United Kingdom"],
     challenge: "Navigating food safety certifications and reaching European buyers was complex. The exporter needed to showcase FSSAI and organic certifications to build buyer trust.",
-    solution: "Highlighted FSSAI & organic certifications prominently on the profile. Via Trade Mart's logistics partner arranged sample shipment with proper cold-chain packaging to the UK.",
+    solution: "Highlighted FSSAI & organic certifications prominently on the profile. Go Easy Trade's logistics partner arranged sample shipment with proper cold-chain packaging to the UK.",
     outcome: "Secured an initial consignment to the UK. After a successful quality audit, converted to a long-term supplier agreement — now a recurring contract worth lakhs every quarter.",
     metrics: [
       { label: "Result", value: "Long-term Deal" },
@@ -96,7 +96,7 @@ const stories = [
     timeframe: "Within 2 months",
     buyers: ["Pan India", "UAE"],
     challenge: "Spending significant budget on generic B2B portals with fake leads and poor conversion. Most inquiries were from non-serious buyers wasting time and resources.",
-    solution: "Switched to Via Trade Mart's Pro plan with verified buyer access and priority RFQ system. Used analytics to identify top-performing product categories.",
+    solution: "Switched to Go Easy Trade's Pro plan with verified buyer access and priority RFQ system. Used analytics to identify top-performing product categories.",
     outcome: "Achieved 40% better conversion compared to previous portals. Reduced time spent on unqualified leads by 60%. Expanded into UAE market through the platform's global buyer network.",
     metrics: [
       { label: "Lead Conversion", value: "+40%" },
@@ -116,7 +116,7 @@ const stories = [
     buyers: ["Domestic", "Southeast Asia"],
     challenge: "An industrial spare parts manufacturer struggled to scale beyond local Punjab markets despite having high-quality products at competitive prices.",
     solution: "Listed 50+ products with detailed specifications, material grades, and compliance certifications. Featured listing ensured visibility in industrial buyer searches nationally.",
-    outcome: "Consistently generating verified domestic and Southeast Asian leads. Part of Via Trade Mart's 7,500+ verified deals success record — now a top-rated verified supplier on the platform.",
+    outcome: "Consistently generating verified domestic and Southeast Asian leads. Part of Go Easy Trade's 7,500+ verified deals success record — now a top-rated verified supplier on the platform.",
     metrics: [
       { label: "Products Listed", value: "50+" },
       { label: "Buyer Rating", value: "Top Rated" },
@@ -208,7 +208,7 @@ export default function SuccessStories() {
           </h1>
           <p className="text-blue-100 text-sm max-w-xl mx-auto leading-relaxed">
             From small manufacturers to large exporters — see how Indian
-            businesses are growing globally with Via Trade Mart.
+            businesses are growing globally with Go Easy Trade.
           </p>
         </div>
       </section>
@@ -238,7 +238,7 @@ export default function SuccessStories() {
               Case Studies
             </span>
             <h2 className="mt-2 text-3xl font-extrabold text-gray-900">
-              How Businesses Are Winning with Via Trade Mart
+              How Businesses Are Winning with Go Easy Trade
             </h2>
             <p className="mt-2 text-gray-500 text-sm max-w-xl mx-auto">
               Real businesses. Real results. No fake numbers.
@@ -262,7 +262,7 @@ export default function SuccessStories() {
             just provide leads — we create genuine connections that drive real
             growth.
           </p>
-          <p className="mt-4 text-sm text-blue-700 font-bold">— Via Trade Mart Team</p>
+          <p className="mt-4 text-sm text-blue-700 font-bold">— Go Easy Trade Team</p>
         </div>
       </section>
 
@@ -274,7 +274,7 @@ export default function SuccessStories() {
             Your Success Story Starts Here
           </h2>
           <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed mb-7">
-            Join 1.2 million+ businesses already trading on Via Trade Mart and
+            Join 1.2 million+ businesses already trading on Go Easy Trade and
             write your own success story.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

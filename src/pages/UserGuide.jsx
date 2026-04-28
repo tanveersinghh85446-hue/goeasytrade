@@ -16,7 +16,7 @@ const guides = [
     id: "login",
     icon: UserCircleIcon,
     title: "How to Login?",
-    subtitle: "Start selling with Via Trade Mart. Join over 10 lakh sellers and reach millions globally.",
+    subtitle: "Start selling with Go Easy Trade. Join over 10 lakh sellers and reach millions globally.",
     color: "bg-blue-100 text-blue-700",
     steps: [
       {
@@ -184,7 +184,7 @@ export default function UserGuide() {
             User Guide
           </h1>
           <p className="text-blue-100 text-sm leading-relaxed">
-            Step-by-step guide to get the most out of Via Trade Mart — for
+            Step-by-step guide to get the most out of Go Easy Trade — for
             buyers, sellers, and exporters.
           </p>
         </div>

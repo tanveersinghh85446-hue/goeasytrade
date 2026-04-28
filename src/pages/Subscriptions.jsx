@@ -13,20 +13,20 @@ const faqCategories = [
     emoji: "💡",
     faqs: [
       {
-        q: "What is Via Trade Mart?",
-        a: "Via Trade Mart is an India-based B2B portal dedicated to helping businesses grow through trusted export and import services. We bridge the gap between Indian sellers and global buyers while ensuring reliable sourcing for international businesses. We proudly serve over 1.2 million registered users around the world.",
+        q: "What is Go Easy Trade?",
+        a: "Go Easy Trade is an India-based B2B portal dedicated to helping businesses grow through trusted export and import services. We bridge the gap between Indian sellers and global buyers while ensuring reliable sourcing for international businesses. We proudly serve over 1.2 million registered users around the world.",
       },
       {
-        q: "Is Via Trade Mart free to use?",
+        q: "Is Go Easy Trade free to use?",
         a: "Yes, basic registration is free. You can list products, browse buyers and sellers, and access basic features at no cost. Premium plans are available for enhanced visibility, featured listings, priority RFQ notifications, and dedicated account management.",
       },
       {
-        q: "What makes Via Trade Mart different from other B2B portals?",
-        a: "We focus on building long-term partnerships through personalized service, transparency, and commitment to quality. Unlike portals that only share leads, ViaTradeMart ensures exporters connect directly with verified buyers — skipping the unnecessary back-and-forth. Our team provides expert guidance at every stage.",
+        q: "What makes Go Easy Trade different from other B2B portals?",
+        a: "We focus on building long-term partnerships through personalized service, transparency, and commitment to quality. Unlike portals that only share leads, Go Easy Trade ensures exporters connect directly with verified buyers — skipping the unnecessary back-and-forth. Our team provides expert guidance at every stage.",
       },
       {
-        q: "How many countries does Via Trade Mart operate in?",
-        a: "Via Trade Mart connects businesses across 79+ countries and regions globally, with buyers and suppliers from Asia, Europe, the Middle East, Africa, and North America actively trading on the platform.",
+        q: "How many countries does Go Easy Trade operate in?",
+        a: "Go Easy Trade connects businesses across 79+ countries and regions globally, with buyers and suppliers from Asia, Europe, the Middle East, Africa, and North America actively trading on the platform.",
       },
     ],
   },
@@ -36,7 +36,7 @@ const faqCategories = [
     emoji: "👤",
     faqs: [
       {
-        q: "How do I get started with Via Trade Mart?",
+        q: "How do I get started with Go Easy Trade?",
         a: "Getting started is simple — go to viatrademart.com and sign up using your business details, contact info, and GST number. Our team will walk you through the process of setting up your profile and listing your products or requirements.",
       },
       {
@@ -48,8 +48,8 @@ const faqCategories = [
         a: "Go to viatrademart.com and click the Login button. You can log in using your registered mobile number (enter the OTP received) or using your registered email and password. Click Verify and Proceed to access your account.",
       },
       {
-        q: "Can small businesses and MSMEs join Via Trade Mart?",
-        a: "Absolutely. Via Trade Mart is built specifically to empower MSMEs, startups, and small traders. Even small manufacturers from tier-2 and tier-3 cities can expand nationally and globally within months using our platform.",
+        q: "Can small businesses and MSMEs join Go Easy Trade?",
+        a: "Absolutely. Go Easy Trade is built specifically to empower MSMEs, startups, and small traders. Even small manufacturers from tier-2 and tier-3 cities can expand nationally and globally within months using our platform.",
       },
     ],
   },
@@ -63,7 +63,7 @@ const faqCategories = [
         a: "Every buyer and supplier goes through a multi-layer verification process including GST validation, business registration verification, and KYC (Know Your Customer) approval. This ensures only authentic, serious businesses are listed on the platform.",
       },
       {
-        q: "Why is verification important on Via Trade Mart?",
+        q: "Why is verification important on Go Easy Trade?",
         a: "Trust is the backbone of every successful business partnership. Verification eliminates fake leads and builds a trust-based marketplace where businesses trade confidently. Verified profiles also rank higher in buyer searches — giving your business more visibility.",
       },
       {
@@ -72,7 +72,7 @@ const faqCategories = [
       },
       {
         q: "Are all buyer inquiries genuine?",
-        a: "Yes. Via Trade Mart's verification filter removes spam and ensures inquiries come from genuine buyers only. Suppliers on Viatrademart report improved lead quality and up to 40% better conversion compared to generic directories.",
+        a: "Yes. Go Easy Trade's verification filter removes spam and ensures inquiries come from genuine buyers only. Suppliers on GoEasyTrade report improved lead quality and up to 40% better conversion compared to generic directories.",
       },
     ],
   },
@@ -90,12 +90,12 @@ const faqCategories = [
         a: "Go to Dashboard → My Products, select the product you want to upgrade, click Upgrade to Featured, and confirm using your plan credits. Featured products get priority placement in search results and buyer recommendations.",
       },
       {
-        q: "What product categories are available on Via Trade Mart?",
-        a: "Via Trade Mart covers 2,452+ categories across all industries including Textiles & Garments, Agriculture & Food Products, Industrial Machinery & Tools, Chemicals & Pharmaceuticals, Construction Materials, Electronics & Electricals, Handicrafts & Home Décor, Automotive Parts, Packaging Materials, and many more.",
+        q: "What product categories are available on Go Easy Trade?",
+        a: "Go Easy Trade covers 2,452+ categories across all industries including Textiles & Garments, Agriculture & Food Products, Industrial Machinery & Tools, Chemicals & Pharmaceuticals, Construction Materials, Electronics & Electricals, Handicrafts & Home Décor, Automotive Parts, Packaging Materials, and many more.",
       },
       {
         q: "Are product pages SEO-optimized?",
-        a: "Yes. Each product you list on Via Trade Mart is automatically optimized for global search engines. So when a buyer searches 'Indian basmati rice exporters' or 'textile manufacturers India,' your listing can appear on Google's first page — driving free, organic leads.",
+        a: "Yes. Each product you list on Go Easy Trade is automatically optimized for global search engines. So when a buyer searches 'Indian basmati rice exporters' or 'textile manufacturers India,' your listing can appear on Google's first page — driving free, organic leads.",
       },
     ],
   },
@@ -114,10 +114,10 @@ const faqCategories = [
       },
       {
         q: "How do I find verified suppliers in India?",
-        a: "Use the search bar on the Find Buyers & Sellers page to search by product name, category, or location. Filter results by Verified badge to see only authenticated suppliers. Via Trade Mart connects you with verified Indian suppliers in minutes.",
+        a: "Use the search bar on the Find Buyers & Sellers page to search by product name, category, or location. Filter results by Verified badge to see only authenticated suppliers. Go Easy Trade connects you with verified Indian suppliers in minutes.",
       },
       {
-        q: "Is it safe to do business with suppliers on Via Trade Mart?",
+        q: "Is it safe to do business with suppliers on Go Easy Trade?",
         a: "Yes. All suppliers are GST-verified and KYC-approved. Transactions are secured with integrated payment gateways offering multiple options, including escrow services that protect both buyers and sellers from fraud.",
       },
     ],
@@ -129,7 +129,7 @@ const faqCategories = [
     faqs: [
       {
         q: "What is the Deal Room?",
-        a: "The Deal Room is Via Trade Mart's exclusive B2B deal negotiation space — India's first structured platform for buyers and sellers to post requirements, respond to RFQs, negotiate directly, and close deals with escrow-protected payments, all in one place.",
+        a: "The Deal Room is Go Easy Trade's exclusive B2B deal negotiation space — India's first structured platform for buyers and sellers to post requirements, respond to RFQs, negotiate directly, and close deals with escrow-protected payments, all in one place.",
       },
       {
         q: "How do I post a requirement in Deal Room?",
@@ -151,20 +151,20 @@ const faqCategories = [
     emoji: "💳",
     faqs: [
       {
-        q: "What subscription plans does Via Trade Mart offer?",
-        a: "Via Trade Mart offers tiered plans: Free Basic Listing (limited listings, basic dashboard), Pro/Growth Plan (more listings, priority RFQ notifications, analytics), and Premium/Enterprise (dedicated account manager, lead nurturing, featured listing slots, export assistance). Contact our team for a tailored quote.",
+        q: "What subscription plans does Go Easy Trade offer?",
+        a: "Go Easy Trade offers tiered plans: Free Basic Listing (limited listings, basic dashboard), Pro/Growth Plan (more listings, priority RFQ notifications, analytics), and Premium/Enterprise (dedicated account manager, lead nurturing, featured listing slots, export assistance). Contact our team for a tailored quote.",
       },
       {
         q: "What is included in the free plan?",
         a: "The free plan includes basic profile creation, limited product listings, access to some RFQs, and a basic dashboard. It's ideal for businesses just starting out on the platform.",
       },
       {
-        q: "How do I make a payment on Via Trade Mart?",
+        q: "How do I make a payment on Go Easy Trade?",
         a: "Go to the Make a Payment page or visit Dashboard → Subscriptions. Multiple payment options are available including UPI, net banking, credit/debit cards, and escrow services for trade transactions.",
       },
       {
-        q: "Can I advertise my business on Via Trade Mart?",
-        a: "Yes! Via Trade Mart offers sponsored listings, featured product slots, targeted email campaigns, and custom advertising packages. Visit the Advertise with Us page or contact our team at info@viatrademart.com for details.",
+        q: "Can I advertise my business on Go Easy Trade?",
+        a: "Yes! Go Easy Trade offers sponsored listings, featured product slots, targeted email campaigns, and custom advertising packages. Visit the Advertise with Us page or contact our team at info@goeasytrade.com for details.",
       },
     ],
   },
@@ -231,7 +231,7 @@ export default function Faqs() {
             Frequently Asked Questions
           </h1>
           <p className="text-blue-100 text-sm leading-relaxed mb-7">
-            Everything you need to know about Via Trade Mart — from getting
+            Everything you need to know about Go Easy Trade — from getting
             started to advanced trade features.
           </p>
 

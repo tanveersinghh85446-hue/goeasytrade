@@ -49,15 +49,15 @@ const contactInfo = [
 
 const faqs = [
   {
-    q: "How do I get started with Via Trade Mart?",
+    q: "How do I get started with Go Easy Trade?",
     a: "Getting started is simple. Contact us via our website or customer support, and our team will walk you through the process of exporting or importing your goods.",
   },
   {
-    q: "What makes Via Trade Mart different from other B2B portals?",
+    q: "What makes Go Easy Trade different from other B2B portals?",
     a: "We focus on building long-term partnerships through personalized service, transparency, and a commitment to quality. Our team provides expert guidance at every stage.",
   },
   {
-    q: "Is registration free on Via Trade Mart?",
+    q: "Is registration free on Go Easy Trade?",
     a: "Yes, basic registration is free. Premium plans are available for enhanced visibility, featured listings, and priority buyer access.",
   },
   {
