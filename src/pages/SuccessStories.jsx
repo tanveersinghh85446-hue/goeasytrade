@@ -1,230 +1,298 @@
-import React from 'react'
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {
+  ArrowRightIcon,
+  TrophyIcon,
+  StarIcon,
+  GlobeAltIcon,
+  ChartBarIcon,
+} from "@heroicons/react/24/outline";
 
-const messages = [
-  "Writing clean code... ✨",
-  "Designing beautiful layouts... 🎨",
-  "Testing on all devices... 📱",
-  "Almost there... 🚀",
-  "Adding final touches... 🛠️",
+// ─── REAL SUCCESS STORIES DATA ──────────────────────────
+const stories = [
+  {
+    id: 1,
+    business: "Mumbai FMCG Exporter",
+    category: "FMCG & Consumer Goods",
+    location: "Mumbai, Maharashtra",
+    plan: "Premium",
+    planColor: "bg-yellow-100 text-yellow-700",
+    result: "₹75 Lakhs in Export Orders",
+    timeframe: "Within 3 months",
+    buyers: ["Dubai", "Kenya", "Singapore"],
+    challenge: "A Mumbai-based FMCG exporter was struggling to find verified international buyers beyond their existing network. Traditional methods like trade fairs were expensive and time-consuming.",
+    solution: "Listed products on Via Trade Mart with complete profile, certifications, and high-quality images. Upgraded to Premium plan for featured listing and dedicated account manager support.",
+    outcome: "Connected with verified buyers from Dubai, Kenya, and Singapore. Secured recurring export orders worth ₹75 lakhs — all through the platform within just 3 months of joining.",
+    metrics: [
+      { label: "Export Orders", value: "₹75L+" },
+      { label: "Countries Reached", value: "3" },
+      { label: "Time to First Deal", value: "3 Weeks" },
+    ],
+  },
+  {
+    id: 2,
+    business: "Jaipur Textile Supplier",
+    category: "Textiles & Apparel",
+    location: "Jaipur, Rajasthan",
+    plan: "Pro",
+    planColor: "bg-blue-100 text-blue-700",
+    result: "200+ Verified Inquiries",
+    timeframe: "Within 6 months",
+    buyers: ["UAE", "United Kingdom"],
+    challenge: "A Jaipur-based textile supplier with premium handloom products was unable to reach international buyers. Visibility was limited to local trade channels.",
+    solution: "Created a verified profile with detailed product catalog, block print fabric listings, and export packaging details. Utilized Pro plan for priority RFQ notifications and analytics.",
+    outcome: "Received 200+ verified inquiries from domestic and overseas buyers. Visibility increased by 150%. Successfully closed deals with UAE and UK retailers — now serving recurring orders.",
+    metrics: [
+      { label: "Verified Inquiries", value: "200+" },
+      { label: "Visibility Increase", value: "150%" },
+      { label: "Countries Reached", value: "2" },
+    ],
+  },
+  {
+    id: 3,
+    business: "Textile Weaving Unit",
+    category: "Textiles & Apparel",
+    location: "Surat, Gujarat",
+    plan: "Premium",
+    planColor: "bg-yellow-100 text-yellow-700",
+    result: "$120,000 in Orders",
+    timeframe: "Within 2 months",
+    buyers: ["Middle East", "Gulf Countries"],
+    challenge: "A mid-sized weaving unit had limited export channels and was heavily dependent on a single trading partner. They needed direct access to international buyers.",
+    solution: "Set up a verified profile with featured RFQ response service. Uploaded complete product specs, quality certifications, and capacity details. Leveraged Premium account manager.",
+    outcome: "Within 2 months, received 12 RFQs from Middle Eastern buyers. Closed 4 orders worth $120,000 and established 2 recurring monthly contracts. Lead time reduced from 3 months to 2 weeks.",
+    metrics: [
+      { label: "Orders Closed", value: "$120K" },
+      { label: "RFQs Received", value: "12" },
+      { label: "Lead Time Reduced", value: "3mo → 2wk" },
+    ],
+  },
+  {
+    id: 4,
+    business: "Organic Spice Exporter",
+    category: "Agricultural Products",
+    location: "Kerala, India",
+    plan: "Pro",
+    planColor: "bg-blue-100 text-blue-700",
+    result: "Long-term UK Supply Agreement",
+    timeframe: "Within 4 months",
+    buyers: ["United Kingdom"],
+    challenge: "Navigating food safety certifications and reaching European buyers was complex. The exporter needed to showcase FSSAI and organic certifications to build buyer trust.",
+    solution: "Highlighted FSSAI & organic certifications prominently on the profile. Via Trade Mart's logistics partner arranged sample shipment with proper cold-chain packaging to the UK.",
+    outcome: "Secured an initial consignment to the UK. After a successful quality audit, converted to a long-term supplier agreement — now a recurring contract worth lakhs every quarter.",
+    metrics: [
+      { label: "Result", value: "Long-term Deal" },
+      { label: "Market", value: "UK / Europe" },
+      { label: "Certifications", value: "FSSAI + Organic" },
+    ],
+  },
+  {
+    id: 5,
+    business: "Delhi Electronics Distributor",
+    category: "Electronics",
+    location: "Delhi, NCR",
+    plan: "Pro",
+    planColor: "bg-blue-100 text-blue-700",
+    result: "40% Better Lead Conversion",
+    timeframe: "Within 2 months",
+    buyers: ["Pan India", "UAE"],
+    challenge: "Spending significant budget on generic B2B portals with fake leads and poor conversion. Most inquiries were from non-serious buyers wasting time and resources.",
+    solution: "Switched to Via Trade Mart's Pro plan with verified buyer access and priority RFQ system. Used analytics to identify top-performing product categories.",
+    outcome: "Achieved 40% better conversion compared to previous portals. Reduced time spent on unqualified leads by 60%. Expanded into UAE market through the platform's global buyer network.",
+    metrics: [
+      { label: "Lead Conversion", value: "+40%" },
+      { label: "Wasted Time Reduced", value: "60%" },
+      { label: "New Markets", value: "UAE" },
+    ],
+  },
+  {
+    id: 6,
+    business: "Ludhiana Industrial Parts Supplier",
+    category: "Industrial Goods & Machinery",
+    location: "Ludhiana, Punjab",
+    plan: "Premium",
+    planColor: "bg-yellow-100 text-yellow-700",
+    result: "7,500+ Verified Deals Platform-wide",
+    timeframe: "Ongoing",
+    buyers: ["Domestic", "Southeast Asia"],
+    challenge: "An industrial spare parts manufacturer struggled to scale beyond local Punjab markets despite having high-quality products at competitive prices.",
+    solution: "Listed 50+ products with detailed specifications, material grades, and compliance certifications. Featured listing ensured visibility in industrial buyer searches nationally.",
+    outcome: "Consistently generating verified domestic and Southeast Asian leads. Part of Via Trade Mart's 7,500+ verified deals success record — now a top-rated verified supplier on the platform.",
+    metrics: [
+      { label: "Products Listed", value: "50+" },
+      { label: "Buyer Rating", value: "Top Rated" },
+      { label: "Markets", value: "PAN + SEA" },
+    ],
+  },
 ];
 
-function SuccessStories() {
-  const [msgIndex, setMsgIndex] = useState(0);
-  const [dots, setDots] = useState("");
-  const [timeLeft, setTimeLeft] = useState("");
+const overallStats = [
+  { icon: TrophyIcon, value: "7,500+", label: "Verified Deals Closed" },
+  { icon: GlobeAltIcon, value: "79+", label: "Countries Reached" },
+  { icon: ChartBarIcon, value: "40%", label: "Better Lead Conversion" },
+  { icon: StarIcon, value: "1.2M+", label: "Registered Users" },
+];
 
-  // Cycle through messages
-  useEffect(() => {
-    const t = setInterval(() => {
-      setMsgIndex((prev) => (prev + 1) % messages.length);
-    }, 2000);
-    return () => clearInterval(t);
-  }, []);
-
-  // Animated dots
-  useEffect(() => {
-    const t = setInterval(() => {
-      setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
-    }, 400);
-    return () => clearInterval(t);
-  }, []);
-
-  // 24 Hour Timer
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      // Get current time
-      const now = new Date();
-      
-      // Get midnight (start of today)
-      const midnight = new Date();
-      midnight.setHours(0, 0, 0, 0);
-      
-      // Calculate next midnight (24 hours from midnight)
-      const nextMidnight = new Date(midnight);
-      nextMidnight.setDate(nextMidnight.getDate() + 1);
-      
-      // Time left in ms
-      const diff = nextMidnight - now;
-      
-      if (diff <= 0) {
-        return "00:00:00";
-      }
-      
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-    };
-
-    setTimeLeft(calculateTimeLeft());
-    
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, []);
-
+// ─── STORY CARD ─────────────────────────────────────────
+function StoryCard({ story }) {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 text-center pt-15 border-t border-white/2">
-
-      {/* ── Developer SVG Illustration ── */}
-      <div className="mb-8 sm:mb-10">
-        <svg
-          width="260"
-          height="260"
-          viewBox="0 0 260 260"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="mx-auto"
-        >
-          {/* Desk */}
-          <rect x="30" y="190" width="200" height="12" rx="6" fill="#111"/>
-          <rect x="55" y="202" width="12" height="40" rx="4" fill="#333"/>
-          <rect x="193" y="202" width="12" height="40" rx="4" fill="#333"/>
-
-          {/* Monitor */}
-          <rect x="70" y="120" width="120" height="75" rx="8" fill="#111"/>
-          <rect x="78" y="128" width="104" height="58" rx="4" fill="#1a1a2e"/>
-          {/* Screen glow */}
-          <rect x="82" y="132" width="96" height="50" rx="3" fill="#0f0f23"/>
-
-          {/* Code lines on screen */}
-          <rect x="88" y="140" width="55" height="3" rx="1.5" fill="#4ade80"/>
-          <rect x="88" y="148" width="40" height="3" rx="1.5" fill="#60a5fa"/>
-          <rect x="95" y="156" width="65" height="3" rx="1.5" fill="#f9a8d4"/>
-          <rect x="95" y="164" width="45" height="3" rx="1.5" fill="#fbbf24"/>
-          <rect x="88" y="172" width="30" height="3" rx="1.5" fill="#4ade80"/>
-
-          {/* Blinking cursor */}
-          <rect x="120" y="172" width="2" height="10" rx="1" fill="white">
-            <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-          </rect>
-
-          {/* Monitor stand */}
-          <rect x="122" y="195" width="16" height="10" rx="2" fill="#333"/>
-          <rect x="110" y="203" width="40" height="6" rx="3" fill="#222"/>
-
-          {/* Keyboard */}
-          <rect x="80" y="210" width="100" height="18" rx="5" fill="#222"/>
-          {[0,1,2,3,4,5,6,7,8,9].map((i) => (
-            <rect key={i} x={86 + i * 9} y="214" width="6" height="5" rx="1.5" fill="#444"/>
-          ))}
-          {[0,1,2,3,4,5,6,7,8].map((i) => (
-            <rect key={i} x={90 + i * 9} y="221" width="6" height="4" rx="1.5" fill="#444"/>
-          ))}
-
-          {/* Person body */}
-          <rect x="108" y="82" width="44" height="42" rx="14" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Person neck */}
-          <rect x="125" y="76" width="10" height="10" rx="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Person head */}
-          <circle cx="130" cy="58" r="22" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Hair */}
-          <path d="M108 52 Q110 32 130 30 Q150 32 152 52" fill="#111"/>
-
-          {/* Eyes */}
-          <ellipse cx="122" cy="56" rx="4" ry="4.5" fill="#111"/>
-          <ellipse cx="138" cy="56" rx="4" ry="4.5" fill="#111"/>
-          <circle cx="123" cy="54" r="1.5" fill="white"/>
-          <circle cx="139" cy="54" r="1.5" fill="white"/>
-
-          {/* Glasses */}
-          <rect x="116" y="51" width="12" height="10" rx="4" fill="none" stroke="#111" strokeWidth="1.5"/>
-          <rect x="132" y="51" width="12" height="10" rx="4" fill="none" stroke="#111" strokeWidth="1.5"/>
-          <line x1="128" y1="56" x2="132" y2="56" stroke="#111" strokeWidth="1.5"/>
-          <line x1="108" y1="56" x2="116" y2="56" stroke="#111" strokeWidth="1.5"/>
-          <line x1="144" y1="56" x2="152" y2="56" stroke="#111" strokeWidth="1.5"/>
-
-          {/* Smile */}
-          <path d="M122 67 Q130 74 138 67" stroke="#111" strokeWidth="2" strokeLinecap="round" fill="none"/>
-
-          {/* Left arm — typing */}
-          <line x1="108" y1="96" x2="88" y2="118" stroke="#111" strokeWidth="4" strokeLinecap="round">
-            <animateTransform attributeName="transform" type="rotate" values="0 108 96;-5 108 96;0 108 96" dur="0.5s" repeatCount="indefinite"/>
-          </line>
-          <ellipse cx="85" cy="121" rx="7" ry="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Right arm — typing */}
-          <line x1="152" y1="96" x2="172" y2="118" stroke="#111" strokeWidth="4" strokeLinecap="round">
-            <animateTransform attributeName="transform" type="rotate" values="0 152 96;5 152 96;0 152 96" dur="0.5s" repeatCount="indefinite" begin="0.25s"/>
-          </line>
-          <ellipse cx="175" cy="121" rx="7" ry="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Coffee mug */}
-          <rect x="32" y="178" width="24" height="18" rx="4" fill="white" stroke="#111" strokeWidth="2"/>
-          <path d="M56 183 Q64 183 64 189 Q64 195 56 195" stroke="#111" strokeWidth="2" fill="none"/>
-          {/* Steam */}
-          <path d="M38 175 Q40 170 38 165" stroke="#aaa" strokeWidth="1.5" strokeLinecap="round" fill="none">
-            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
-          </path>
-          <path d="M46 174 Q48 168 46 162" stroke="#aaa" strokeWidth="1.5" strokeLinecap="round" fill="none">
-            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
-          </path>
-
-          {/* Stars / sparkles around head */}
-          <text x="158" y="46" fontSize="14" fill="#111">✦</text>
-          <text x="96"  y="42" fontSize="12" fill="#111">✦</text>
-          <text x="170" y="72" fontSize="10" fill="#111">✦</text>
-        </svg>
-      </div>
-
-      {/* ── Text ── */}
-      <p className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-3">"/success-story"  Page Under Construction</p>
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-black mb-4">Our success-story Page Coming Soon</h1>
-
-      {/* Polite message */}
-      <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-md mx-auto mb-3">
-        We are working hard to bring you something wonderful. This page is currently under development and will be ready very soon.
-      </p>
-      <p className="text-gray-400 text-sm max-w-sm mx-auto mb-8">
-        Thank you for your patience and support. We appreciate you visiting Swarna Kamal Yoga! 🙏
-      </p>
-
-      {/* 24 Hour Timer */}
-      <div className="mb-8  px-8 py-6 max-w-sm">
-        {/* <p className="text-xs uppercase tracking-widest text-black font-bold mb-3">Time until reset</p> */}
-        <div className="font-mono text-5xl font-extrabold text-black tracking-tight">
-          {timeLeft || "00:00:00"}
+    <div className="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+      {/* Header */}
+      <div className="bg-linear-to-br from-blue-700 via-blue-600 to-blue-500 p-6 text-white">
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div>
+            <h3 className="font-extrabold text-base">{story.business}</h3>
+            <p className="text-blue-200 text-xs mt-0.5">{story.location} • {story.category}</p>
+          </div>
+          <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${story.planColor} shrink-0`}>
+            {story.plan} Plan
+          </span>
         </div>
-        {/* <p className="text-xs text-black mt-3">Resets daily at midnight</p> */}
+        <div className="text-2xl font-extrabold text-yellow-300">{story.result}</div>
+        <p className="text-blue-200 text-xs mt-0.5">{story.timeframe}</p>
+
+        {/* Buyer countries */}
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {story.buyers.map((b) => (
+            <span key={b} className="bg-white/15 text-white text-[11px] px-2 py-0.5 rounded-full">
+              📍 {b}
+            </span>
+          ))}
+        </div>
       </div>
 
-      {/* Animated status */}
-      <div className="flex items-center gap-3 mb-8 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
-        <span className="w-2 h-2 bg-black rounded-full animate-pulse shrink-0" />
-        <p className="text-sm font-medium text-gray-700 min-w-55 text-left">
-          {messages[msgIndex]}
-        </p>
+      {/* Body */}
+      <div className="p-6">
+        {/* Metrics */}
+        <div className="grid grid-cols-3 gap-3 mb-5">
+          {story.metrics.map((m) => (
+            <div key={m.label} className="bg-blue-50 rounded-xl p-3 text-center">
+              <div className="text-sm font-extrabold text-blue-700">{m.value}</div>
+              <div className="text-[10px] text-gray-500 mt-0.5">{m.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Challenge → Solution → Outcome */}
+        <div className="space-y-3">
+          <div>
+            <p className="text-[11px] font-bold text-red-500 uppercase tracking-wider mb-1">❌ Challenge</p>
+            <p className="text-xs text-gray-500 leading-relaxed">{story.challenge}</p>
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-blue-600 uppercase tracking-wider mb-1">💡 Solution</p>
+            <p className="text-xs text-gray-500 leading-relaxed">{story.solution}</p>
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-green-600 uppercase tracking-wider mb-1">✅ Outcome</p>
+            <p className="text-xs text-gray-500 leading-relaxed">{story.outcome}</p>
+          </div>
+        </div>
       </div>
-
-      {/* Bouncing dots */}
-      <div className="flex gap-2 mb-10">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="w-2.5 h-2.5 bg-black rounded-full animate-bounce"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          />
-        ))}
-      </div>
-
-      {/* Back to Home button */}
-      <Link
-        to="/"
-        className="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-all text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200"
-      >
-        ← Back to Home
-      </Link>
-
     </div>
   );
 }
 
-export default SuccessStories;
+// ─── MAIN PAGE ─────────────────────────────────────────
+export default function SuccessStories() {
+  return (
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+
+      {/* ── HERO ── */}
+      <section className="bg-linear-to-br from-blue-700 via-blue-600 to-blue-500 text-white py-14 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="inline-block bg-white/20 border border-white/25 text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">
+            Real Results
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold mb-3">
+            Success Stories
+          </h1>
+          <p className="text-blue-100 text-sm max-w-xl mx-auto leading-relaxed">
+            From small manufacturers to large exporters — see how Indian
+            businesses are growing globally with Via Trade Mart.
+          </p>
+        </div>
+      </section>
+
+      {/* ── OVERALL STATS ── */}
+      <section className="bg-white py-10 px-4 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {overallStats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <stat.icon className="w-6 h-6 text-blue-700" />
+                </div>
+                <div className="text-2xl font-extrabold text-blue-700">{stat.value}</div>
+                <div className="text-xs text-gray-500 mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── STORIES GRID ── */}
+      <section className="py-14 px-4">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="text-blue-700 font-semibold text-sm uppercase tracking-widest">
+              Case Studies
+            </span>
+            <h2 className="mt-2 text-3xl font-extrabold text-gray-900">
+              How Businesses Are Winning with Via Trade Mart
+            </h2>
+            <p className="mt-2 text-gray-500 text-sm max-w-xl mx-auto">
+              Real businesses. Real results. No fake numbers.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {stories.map((story) => (
+              <StoryCard key={story.id} story={story} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── QUOTE BANNER ── */}
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="text-5xl text-blue-200 mb-4">"</div>
+          <p className="text-lg font-semibold text-gray-700 italic leading-relaxed">
+            Our goal is to make B2B trade authentic and transparent. We don't
+            just provide leads — we create genuine connections that drive real
+            growth.
+          </p>
+          <p className="mt-4 text-sm text-blue-700 font-bold">— Via Trade Mart Team</p>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="bg-blue-700 text-white py-14 px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <TrophyIcon className="w-10 h-10 mx-auto mb-4 text-yellow-300" />
+          <h2 className="text-2xl font-extrabold mb-2">
+            Your Success Story Starts Here
+          </h2>
+          <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed mb-7">
+            Join 1.2 million+ businesses already trading on Via Trade Mart and
+            write your own success story.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/find-buyers"
+              className="inline-flex items-center justify-center gap-2 bg-yellow-400 text-blue-900 font-bold px-7 py-3 rounded-full hover:bg-yellow-300 transition shadow-lg text-sm"
+            >
+              Start Trading <ArrowRightIcon className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/subscription"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/30 text-white font-semibold px-7 py-3 rounded-full hover:bg-white/20 transition text-sm"
+            >
+              View Plans
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

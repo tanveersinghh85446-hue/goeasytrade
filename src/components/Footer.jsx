@@ -20,6 +20,8 @@ const customerSupport = [
   { label: "Catalogs", path: "/catalogue" },
   { label: "Post Your Requirement", path: "/post-your-requirment" },
   { label: "Sitemap", path: "/sitemap" },
+  { label: "About Us", path: "/about-us" },
+  { label: "Privacy Policy", path: "/privacy-policy" },
 ];
 
 const ourPages = [
@@ -32,6 +34,7 @@ const ourPages = [
   { label: "Make a Payment", path: "/make-payment-with-viatrademart" },
   { label: "Advertise with Us", path: "/advertise-with-via-trade-mart" },
   { label: "Guest Post", path: "/guest-posting" },
+
 ];
 
 const popularTags = [

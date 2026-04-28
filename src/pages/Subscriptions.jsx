@@ -1,230 +1,362 @@
-import React from 'react'
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {
+  MagnifyingGlassIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/24/outline";
 
-const messages = [
-  "Writing clean code... ✨",
-  "Designing beautiful layouts... 🎨",
-  "Testing on all devices... 📱",
-  "Almost there... 🚀",
-  "Adding final touches... 🛠️",
+// ─── FAQ DATA (real from viatrademart.com) ──────────────
+const faqCategories = [
+  {
+    id: "general",
+    label: "General",
+    emoji: "💡",
+    faqs: [
+      {
+        q: "What is Via Trade Mart?",
+        a: "Via Trade Mart is an India-based B2B portal dedicated to helping businesses grow through trusted export and import services. We bridge the gap between Indian sellers and global buyers while ensuring reliable sourcing for international businesses. We proudly serve over 1.2 million registered users around the world.",
+      },
+      {
+        q: "Is Via Trade Mart free to use?",
+        a: "Yes, basic registration is free. You can list products, browse buyers and sellers, and access basic features at no cost. Premium plans are available for enhanced visibility, featured listings, priority RFQ notifications, and dedicated account management.",
+      },
+      {
+        q: "What makes Via Trade Mart different from other B2B portals?",
+        a: "We focus on building long-term partnerships through personalized service, transparency, and commitment to quality. Unlike portals that only share leads, ViaTradeMart ensures exporters connect directly with verified buyers — skipping the unnecessary back-and-forth. Our team provides expert guidance at every stage.",
+      },
+      {
+        q: "How many countries does Via Trade Mart operate in?",
+        a: "Via Trade Mart connects businesses across 79+ countries and regions globally, with buyers and suppliers from Asia, Europe, the Middle East, Africa, and North America actively trading on the platform.",
+      },
+    ],
+  },
+  {
+    id: "registration",
+    label: "Registration & Profile",
+    emoji: "👤",
+    faqs: [
+      {
+        q: "How do I get started with Via Trade Mart?",
+        a: "Getting started is simple — go to viatrademart.com and sign up using your business details, contact info, and GST number. Our team will walk you through the process of setting up your profile and listing your products or requirements.",
+      },
+      {
+        q: "How do I update my profile?",
+        a: "Go to Dashboard → My Profile. You can edit your Business Name, Email, Phone, and Address. Upload your Logo and Cover Image, select the categories you deal in, and click Save Changes.",
+      },
+      {
+        q: "How do I log in to my account?",
+        a: "Go to viatrademart.com and click the Login button. You can log in using your registered mobile number (enter the OTP received) or using your registered email and password. Click Verify and Proceed to access your account.",
+      },
+      {
+        q: "Can small businesses and MSMEs join Via Trade Mart?",
+        a: "Absolutely. Via Trade Mart is built specifically to empower MSMEs, startups, and small traders. Even small manufacturers from tier-2 and tier-3 cities can expand nationally and globally within months using our platform.",
+      },
+    ],
+  },
+  {
+    id: "verification",
+    label: "Verification & Trust",
+    emoji: "🛡️",
+    faqs: [
+      {
+        q: "How are buyers and suppliers verified?",
+        a: "Every buyer and supplier goes through a multi-layer verification process including GST validation, business registration verification, and KYC (Know Your Customer) approval. This ensures only authentic, serious businesses are listed on the platform.",
+      },
+      {
+        q: "Why is verification important on Via Trade Mart?",
+        a: "Trust is the backbone of every successful business partnership. Verification eliminates fake leads and builds a trust-based marketplace where businesses trade confidently. Verified profiles also rank higher in buyer searches — giving your business more visibility.",
+      },
+      {
+        q: "How can I get my business verified?",
+        a: "After completing your profile, submit your GST certificate, business registration documents, and KYC details. Our verification team reviews and approves your profile. Once verified, a green Verified badge appears on your listing.",
+      },
+      {
+        q: "Are all buyer inquiries genuine?",
+        a: "Yes. Via Trade Mart's verification filter removes spam and ensures inquiries come from genuine buyers only. Suppliers on Viatrademart report improved lead quality and up to 40% better conversion compared to generic directories.",
+      },
+    ],
+  },
+  {
+    id: "products",
+    label: "Products & Listings",
+    emoji: "📦",
+    faqs: [
+      {
+        q: "How do I add a product listing?",
+        a: "Go to Dashboard → My Products → Add Product. Fill in the product details and description, upload high-quality images, and click Submit to publish your listing. Your product will be visible to buyers worldwide.",
+      },
+      {
+        q: "How do I upgrade a product to Featured?",
+        a: "Go to Dashboard → My Products, select the product you want to upgrade, click Upgrade to Featured, and confirm using your plan credits. Featured products get priority placement in search results and buyer recommendations.",
+      },
+      {
+        q: "What product categories are available on Via Trade Mart?",
+        a: "Via Trade Mart covers 2,452+ categories across all industries including Textiles & Garments, Agriculture & Food Products, Industrial Machinery & Tools, Chemicals & Pharmaceuticals, Construction Materials, Electronics & Electricals, Handicrafts & Home Décor, Automotive Parts, Packaging Materials, and many more.",
+      },
+      {
+        q: "Are product pages SEO-optimized?",
+        a: "Yes. Each product you list on Via Trade Mart is automatically optimized for global search engines. So when a buyer searches 'Indian basmati rice exporters' or 'textile manufacturers India,' your listing can appear on Google's first page — driving free, organic leads.",
+      },
+    ],
+  },
+  {
+    id: "buyers",
+    label: "For Buyers",
+    emoji: "🛒",
+    faqs: [
+      {
+        q: "How do I send an inquiry to a supplier?",
+        a: "Browse any product or supplier profile. Click on Send Inquiry, write your requirements and submit. You can check and manage all your inquiries from Dashboard → My Inquiries.",
+      },
+      {
+        q: "How do I buy trade leads?",
+        a: "Go to Dashboard → Buy Trade Leads. Filter leads by category, location, or price. Click on Purchase Lead and you'll instantly get the buyer's contact details.",
+      },
+      {
+        q: "How do I find verified suppliers in India?",
+        a: "Use the search bar on the Find Buyers & Sellers page to search by product name, category, or location. Filter results by Verified badge to see only authenticated suppliers. Via Trade Mart connects you with verified Indian suppliers in minutes.",
+      },
+      {
+        q: "Is it safe to do business with suppliers on Via Trade Mart?",
+        a: "Yes. All suppliers are GST-verified and KYC-approved. Transactions are secured with integrated payment gateways offering multiple options, including escrow services that protect both buyers and sellers from fraud.",
+      },
+    ],
+  },
+  {
+    id: "dealroom",
+    label: "Deal Room",
+    emoji: "🤝",
+    faqs: [
+      {
+        q: "What is the Deal Room?",
+        a: "The Deal Room is Via Trade Mart's exclusive B2B deal negotiation space — India's first structured platform for buyers and sellers to post requirements, respond to RFQs, negotiate directly, and close deals with escrow-protected payments, all in one place.",
+      },
+      {
+        q: "How do I post a requirement in Deal Room?",
+        a: "Go to the Deal Room page and click Post Your Requirement. Fill in your product requirement details, quantity, budget, and location. Verified traders will contact you directly with offers.",
+      },
+      {
+        q: "What are Buy Leads and Sell Leads?",
+        a: "Buy Leads are posted by buyers looking for specific products or services. Sell Leads are posted by suppliers offering products for sale. You can browse, filter, and respond to both types of leads directly from the Deal Room.",
+      },
+      {
+        q: "Are Deal Room transactions secure?",
+        a: "Yes. All deals are facilitated with secure, escrow-based payment protection. Every trader in the Deal Room is verified, ensuring you only deal with serious and genuine businesses.",
+      },
+    ],
+  },
+  {
+    id: "subscription",
+    label: "Subscriptions & Plans",
+    emoji: "💳",
+    faqs: [
+      {
+        q: "What subscription plans does Via Trade Mart offer?",
+        a: "Via Trade Mart offers tiered plans: Free Basic Listing (limited listings, basic dashboard), Pro/Growth Plan (more listings, priority RFQ notifications, analytics), and Premium/Enterprise (dedicated account manager, lead nurturing, featured listing slots, export assistance). Contact our team for a tailored quote.",
+      },
+      {
+        q: "What is included in the free plan?",
+        a: "The free plan includes basic profile creation, limited product listings, access to some RFQs, and a basic dashboard. It's ideal for businesses just starting out on the platform.",
+      },
+      {
+        q: "How do I make a payment on Via Trade Mart?",
+        a: "Go to the Make a Payment page or visit Dashboard → Subscriptions. Multiple payment options are available including UPI, net banking, credit/debit cards, and escrow services for trade transactions.",
+      },
+      {
+        q: "Can I advertise my business on Via Trade Mart?",
+        a: "Yes! Via Trade Mart offers sponsored listings, featured product slots, targeted email campaigns, and custom advertising packages. Visit the Advertise with Us page or contact our team at info@viatrademart.com for details.",
+      },
+    ],
+  },
 ];
 
-function Subscription() {
-  const [msgIndex, setMsgIndex] = useState(0);
-  const [dots, setDots] = useState("");
-  const [timeLeft, setTimeLeft] = useState("");
-
-  // Cycle through messages
-  useEffect(() => {
-    const t = setInterval(() => {
-      setMsgIndex((prev) => (prev + 1) % messages.length);
-    }, 2000);
-    return () => clearInterval(t);
-  }, []);
-
-  // Animated dots
-  useEffect(() => {
-    const t = setInterval(() => {
-      setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
-    }, 400);
-    return () => clearInterval(t);
-  }, []);
-
-  // 24 Hour Timer
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      // Get current time
-      const now = new Date();
-      
-      // Get midnight (start of today)
-      const midnight = new Date();
-      midnight.setHours(0, 0, 0, 0);
-      
-      // Calculate next midnight (24 hours from midnight)
-      const nextMidnight = new Date(midnight);
-      nextMidnight.setDate(nextMidnight.getDate() + 1);
-      
-      // Time left in ms
-      const diff = nextMidnight - now;
-      
-      if (diff <= 0) {
-        return "00:00:00";
-      }
-      
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-    };
-
-    setTimeLeft(calculateTimeLeft());
-    
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, []);
-
+// ─── FAQ ITEM ──────────────────────────────────────────
+function FaqItem({ faq, isOpen, onToggle }) {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 text-center pt-15 border-t border-white/2">
-
-      {/* ── Developer SVG Illustration ── */}
-      <div className="mb-8 sm:mb-10">
-        <svg
-          width="260"
-          height="260"
-          viewBox="0 0 260 260"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="mx-auto"
-        >
-          {/* Desk */}
-          <rect x="30" y="190" width="200" height="12" rx="6" fill="#111"/>
-          <rect x="55" y="202" width="12" height="40" rx="4" fill="#333"/>
-          <rect x="193" y="202" width="12" height="40" rx="4" fill="#333"/>
-
-          {/* Monitor */}
-          <rect x="70" y="120" width="120" height="75" rx="8" fill="#111"/>
-          <rect x="78" y="128" width="104" height="58" rx="4" fill="#1a1a2e"/>
-          {/* Screen glow */}
-          <rect x="82" y="132" width="96" height="50" rx="3" fill="#0f0f23"/>
-
-          {/* Code lines on screen */}
-          <rect x="88" y="140" width="55" height="3" rx="1.5" fill="#4ade80"/>
-          <rect x="88" y="148" width="40" height="3" rx="1.5" fill="#60a5fa"/>
-          <rect x="95" y="156" width="65" height="3" rx="1.5" fill="#f9a8d4"/>
-          <rect x="95" y="164" width="45" height="3" rx="1.5" fill="#fbbf24"/>
-          <rect x="88" y="172" width="30" height="3" rx="1.5" fill="#4ade80"/>
-
-          {/* Blinking cursor */}
-          <rect x="120" y="172" width="2" height="10" rx="1" fill="white">
-            <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-          </rect>
-
-          {/* Monitor stand */}
-          <rect x="122" y="195" width="16" height="10" rx="2" fill="#333"/>
-          <rect x="110" y="203" width="40" height="6" rx="3" fill="#222"/>
-
-          {/* Keyboard */}
-          <rect x="80" y="210" width="100" height="18" rx="5" fill="#222"/>
-          {[0,1,2,3,4,5,6,7,8,9].map((i) => (
-            <rect key={i} x={86 + i * 9} y="214" width="6" height="5" rx="1.5" fill="#444"/>
-          ))}
-          {[0,1,2,3,4,5,6,7,8].map((i) => (
-            <rect key={i} x={90 + i * 9} y="221" width="6" height="4" rx="1.5" fill="#444"/>
-          ))}
-
-          {/* Person body */}
-          <rect x="108" y="82" width="44" height="42" rx="14" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Person neck */}
-          <rect x="125" y="76" width="10" height="10" rx="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Person head */}
-          <circle cx="130" cy="58" r="22" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Hair */}
-          <path d="M108 52 Q110 32 130 30 Q150 32 152 52" fill="#111"/>
-
-          {/* Eyes */}
-          <ellipse cx="122" cy="56" rx="4" ry="4.5" fill="#111"/>
-          <ellipse cx="138" cy="56" rx="4" ry="4.5" fill="#111"/>
-          <circle cx="123" cy="54" r="1.5" fill="white"/>
-          <circle cx="139" cy="54" r="1.5" fill="white"/>
-
-          {/* Glasses */}
-          <rect x="116" y="51" width="12" height="10" rx="4" fill="none" stroke="#111" strokeWidth="1.5"/>
-          <rect x="132" y="51" width="12" height="10" rx="4" fill="none" stroke="#111" strokeWidth="1.5"/>
-          <line x1="128" y1="56" x2="132" y2="56" stroke="#111" strokeWidth="1.5"/>
-          <line x1="108" y1="56" x2="116" y2="56" stroke="#111" strokeWidth="1.5"/>
-          <line x1="144" y1="56" x2="152" y2="56" stroke="#111" strokeWidth="1.5"/>
-
-          {/* Smile */}
-          <path d="M122 67 Q130 74 138 67" stroke="#111" strokeWidth="2" strokeLinecap="round" fill="none"/>
-
-          {/* Left arm — typing */}
-          <line x1="108" y1="96" x2="88" y2="118" stroke="#111" strokeWidth="4" strokeLinecap="round">
-            <animateTransform attributeName="transform" type="rotate" values="0 108 96;-5 108 96;0 108 96" dur="0.5s" repeatCount="indefinite"/>
-          </line>
-          <ellipse cx="85" cy="121" rx="7" ry="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Right arm — typing */}
-          <line x1="152" y1="96" x2="172" y2="118" stroke="#111" strokeWidth="4" strokeLinecap="round">
-            <animateTransform attributeName="transform" type="rotate" values="0 152 96;5 152 96;0 152 96" dur="0.5s" repeatCount="indefinite" begin="0.25s"/>
-          </line>
-          <ellipse cx="175" cy="121" rx="7" ry="5" fill="white" stroke="#111" strokeWidth="2"/>
-
-          {/* Coffee mug */}
-          <rect x="32" y="178" width="24" height="18" rx="4" fill="white" stroke="#111" strokeWidth="2"/>
-          <path d="M56 183 Q64 183 64 189 Q64 195 56 195" stroke="#111" strokeWidth="2" fill="none"/>
-          {/* Steam */}
-          <path d="M38 175 Q40 170 38 165" stroke="#aaa" strokeWidth="1.5" strokeLinecap="round" fill="none">
-            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
-          </path>
-          <path d="M46 174 Q48 168 46 162" stroke="#aaa" strokeWidth="1.5" strokeLinecap="round" fill="none">
-            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
-          </path>
-
-          {/* Stars / sparkles around head */}
-          <text x="158" y="46" fontSize="14" fill="#111">✦</text>
-          <text x="96"  y="42" fontSize="12" fill="#111">✦</text>
-          <text x="170" y="72" fontSize="10" fill="#111">✦</text>
-        </svg>
-      </div>
-
-      {/* ── Text ── */}
-      <p className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-3">Subscription Page Under Construction</p>
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-black mb-4">Our Subscription Page Coming Soon</h1>
-
-      {/* Polite message */}
-      <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-md mx-auto mb-3">
-        We are working hard to bring you something wonderful. This page is currently under development and will be ready very soon.
-      </p>
-      <p className="text-gray-400 text-sm max-w-sm mx-auto mb-8">
-        Thank you for your patience and support. We appreciate you visiting Swarna Kamal Yoga! 🙏
-      </p>
-
-      {/* 24 Hour Timer */}
-      <div className="mb-8  px-8 py-6 max-w-sm">
-        {/* <p className="text-xs uppercase tracking-widest text-black font-bold mb-3">Time until reset</p> */}
-        <div className="font-mono text-5xl font-extrabold text-black tracking-tight">
-          {timeLeft || "00:00:00"}
-        </div>
-        {/* <p className="text-xs text-black mt-3">Resets daily at midnight</p> */}
-      </div>
-
-      {/* Animated status */}
-      <div className="flex items-center gap-3 mb-8 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5">
-        <span className="w-2 h-2 bg-black rounded-full animate-pulse shrink-0" />
-        <p className="text-sm font-medium text-gray-700 min-w-55 text-left">
-          {messages[msgIndex]}
-        </p>
-      </div>
-
-      {/* Bouncing dots */}
-      <div className="flex gap-2 mb-10">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="w-2.5 h-2.5 bg-black rounded-full animate-bounce"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          />
-        ))}
-      </div>
-
-      {/* Back to Home button */}
-      <Link
-        to="/"
-        className="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-all text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200"
+    <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-start justify-between px-5 py-4 text-left gap-3"
       >
-        ← Back to Home
-      </Link>
-
+        <span className="text-sm font-semibold text-gray-800 leading-snug">{faq.q}</span>
+        <ChevronDownIcon
+          className={`w-5 h-5 text-blue-700 shrink-0 mt-0.5 transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      {isOpen && (
+        <div className="px-5 pb-5 border-t border-gray-50">
+          <p className="text-sm text-gray-500 leading-relaxed pt-3">{faq.a}</p>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Subscription;
+// ─── MAIN PAGE ─────────────────────────────────────────
+export default function Faqs() {
+  const [openItem, setOpenItem] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [search, setSearch] = useState("");
+
+  // flatten all faqs for search
+  const allFaqs = faqCategories.flatMap((cat) =>
+    cat.faqs.map((faq) => ({ ...faq, category: cat.id, categoryLabel: cat.label }))
+  );
+
+  const searchResults = search
+    ? allFaqs.filter(
+        (faq) =>
+          faq.q.toLowerCase().includes(search.toLowerCase()) ||
+          faq.a.toLowerCase().includes(search.toLowerCase())
+      )
+    : null;
+
+  const displayCategories =
+    activeCategory === "all"
+      ? faqCategories
+      : faqCategories.filter((c) => c.id === activeCategory);
+
+  return (
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+
+      {/* ── HERO ── */}
+      <section className="bg-linear-to-br from-blue-700 via-blue-600 to-blue-500 text-white py-14 px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="inline-block bg-white/20 border border-white/25 text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">
+            Help Center
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold mb-3">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-blue-100 text-sm leading-relaxed mb-7">
+            Everything you need to know about Via Trade Mart — from getting
+            started to advanced trade features.
+          </p>
+
+          {/* Search */}
+          <div className="relative max-w-xl mx-auto">
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => { setSearch(e.target.value); setOpenItem(null); }}
+              placeholder="Search your question..."
+              className="w-full pl-11 pr-4 py-3.5 rounded-full text-gray-800 text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        {/* ── SEARCH RESULTS ── */}
+        {search && searchResults ? (
+          <div>
+            <p className="text-sm text-gray-500 mb-5">
+              Found <span className="font-bold text-gray-800">{searchResults.length}</span> results for "{search}"
+              <button onClick={() => setSearch("")} className="ml-3 text-xs text-red-500 hover:underline">Clear</button>
+            </p>
+            {searchResults.length > 0 ? (
+              <div className="space-y-3">
+                {searchResults.map((faq, i) => (
+                  <div key={i}>
+                    <p className="text-[11px] text-blue-600 font-semibold uppercase tracking-wide mb-1 px-1">
+                      {faq.categoryLabel}
+                    </p>
+                    <FaqItem
+                      faq={faq}
+                      isOpen={openItem === `search-${i}`}
+                      onToggle={() => setOpenItem(openItem === `search-${i}` ? null : `search-${i}`)}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16">
+                <p className="text-gray-400 text-sm">No results found. Try a different keyword.</p>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            {/* ── CATEGORY TABS ── */}
+            <div className="flex gap-2 overflow-x-auto pb-2 mb-8 scrollbar-hide">
+              <button
+                onClick={() => setActiveCategory("all")}
+                className={`shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  activeCategory === "all"
+                    ? "bg-blue-700 text-white shadow"
+                    : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                All Topics
+              </button>
+              {faqCategories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                    activeCategory === cat.id
+                      ? "bg-blue-700 text-white shadow"
+                      : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  {cat.emoji} {cat.label}
+                </button>
+              ))}
+            </div>
+
+            {/* ── FAQ CATEGORIES ── */}
+            <div className="space-y-10">
+              {displayCategories.map((cat) => (
+                <div key={cat.id}>
+                  <h2 className="text-lg font-extrabold text-gray-900 mb-4 flex items-center gap-2">
+                    <span>{cat.emoji}</span> {cat.label}
+                  </h2>
+                  <div className="space-y-3">
+                    {cat.faqs.map((faq, i) => {
+                      const key = `${cat.id}-${i}`;
+                      return (
+                        <FaqItem
+                          key={key}
+                          faq={faq}
+                          isOpen={openItem === key}
+                          onToggle={() => setOpenItem(openItem === key ? null : key)}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* ── STILL NEED HELP ── */}
+        <div className="mt-14 bg-blue-700 rounded-3xl p-8 text-white text-center">
+          <h3 className="text-xl font-extrabold mb-2">Still Have Questions?</h3>
+          <p className="text-blue-200 text-sm mb-6 max-w-sm mx-auto">
+            Can't find the answer you're looking for? Our support team is ready
+            to help you.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/contact-us"
+              className="bg-yellow-400 text-blue-900 font-bold px-6 py-2.5 rounded-full hover:bg-yellow-300 transition text-sm"
+            >
+              Contact Support
+            </Link>
+            <a
+              href="tel:+919654660006"
+              className="bg-white/10 border border-white/30 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-white/20 transition text-sm"
+            >
+              Call +91 9654660006
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

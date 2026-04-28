@@ -22,6 +22,8 @@ import GoEasyTradeinNews from "./pages/GoEasyTradeinNews";
 import MakeaPayment from "./pages/MakeaPayment";
 import AdvertisewithUs from "./pages/AdvertisewithUs";
 import GuestPost from "./pages/GuestPost";
+import AboutUs from "./pages/AboutUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 function App() {
   return (
     <Router>
@@ -32,7 +34,7 @@ function App() {
           <Route path="/find-buyers" element={<FindBuyers />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/faqs" element={<FAQs />} />
-          <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/team" element={<Team />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route
@@ -48,10 +50,18 @@ function App() {
           <Route path="/success-story" element={<SuccessStories />} />
           <Route path="/get-your-own-website" element={<GetOwnWebsite />} />
           <Route path="/web-stories" element={<WebStories />} />
-          <Route path="/news"  element={<GoEasyTradeinNews/>}/>
-          <Route path="/make-payment-with-viatrademart" element={<MakeaPayment/>}/>
-          <Route path="/advertise-with-via-trade-mart" element={<AdvertisewithUs/>}/>
-          <Route path="/guest-posting" element={<GuestPost/>}/>
+          <Route path="/news" element={<GoEasyTradeinNews />} />
+          <Route
+            path="/make-payment-with-viatrademart"
+            element={<MakeaPayment />}
+          />
+          <Route
+            path="/advertise-with-via-trade-mart"
+            element={<AdvertisewithUs />}
+          />
+          <Route path="/guest-posting" element={<GuestPost />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </MainLayout>
     </Router>
