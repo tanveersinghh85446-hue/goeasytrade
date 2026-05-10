@@ -61,7 +61,7 @@ function App() {
           />
           <Route path="/guest-posting" element={<GuestPost />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />zzz
         </Routes>
       </MainLayout>
     </Router>
